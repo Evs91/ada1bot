@@ -1,23 +1,23 @@
 version: '3.5'
 
 services:
-  nano:
-  container_name: ada1_bot
-  build: .
-  command: python bot/client.py
-  volumes:
-    - ./bot:/app/bot
-  ports:
-    - "8001:8001"
-  environment:
-    DISCORD_BOT_TOKEN: /var/run/secrets/discord_bot_token
-    BUNGIE_API_TOKEN: /var/run/secrets/bungie_api_token
-  secrets:
-    - discord_bot_token
-    - bungie_api_token
+  bot:
+#    container_name: ada1bot
+    build: .
+    command: python bot/client.py
+    volumes:
+      - ./bot:/app/bot
+    ports:
+      - "8001:8001"
+    environment:
+      DISCORD_BOT_TOKEN: /var/run/secrets/discord_bot_token
+      BUNGIE_API_TOKEN: /var/run/secrets/bungie_api_token
+    secrets:
+      - discord_bot_token
+      - bungie_api_token
 
-  secrets:
-    discord_bot_token:
-      file: ./secrets/discord_bot_token
-    bungie_api_toekn
-      file: ./secrets/bungie_api_token
+secrets:
+  discord_bot_token:
+    file: ./secrets/discord_bot_token
+  bungie_api_token:
+    file: ./secrets/bungie_api_token
